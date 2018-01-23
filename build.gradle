@@ -74,3 +74,9 @@ asciidoctor {
 			generated  : asciiDocOutputDir
 	]
 }
+
+task apidocs(type: Copy) {
+	dependsOn asciidoctor
+	from "$asciidoctor.outputDir/html5"
+	into "$projectDir/src/main/resources/static/docs"
+}
