@@ -24,6 +24,11 @@ group = 'cn.worthy'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
+tasks.withType(JavaCompile) {
+	options.encoding = "UTF-8"
+	options.compilerArgs << "-parameters"
+}
+
 repositories {
 	mavenCentral()
 
@@ -42,4 +47,30 @@ dependencies {
 	compile('io.swagger:swagger-core:1.5.15')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile("io.springfox:springfox-staticdocs")
+}
+
+
+ext {
+	asciiDocOutputDir = file("$docsDir/generated/asciidoc")
+	staticDir = "$projectDir/src/main/resources/static"
+}
+
+asciidoctor {
+	dependsOn test
+	sources {
+		include 'index.adoc'
+	}
+	sourceDir 'src/main/resources/static/docs/asciidoc'
+	outputDir "$docsDir"
+	backends = ['html5']
+	attributes = [
+			doctype    : 'book',
+			toc        : 'left',
+			toclevels  : '3',
+			numbered   : '',
+			sectlinks  : '',
+			sectanchors: '',
+			hardbreaks : '',
+			generated  : asciiDocOutputDir
+	]
 }
