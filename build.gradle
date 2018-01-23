@@ -1,0 +1,45 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.9.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		maven { url "https://plugins.gradle.org/m2" }
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+plugins {
+	id "org.asciidoctor.convert" version "1.5.3" apply false
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'org.asciidoctor.convert'
+
+group = 'cn.worthy'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compileOnly('org.projectlombok:lombok')
+	compile('io.springfox:springfox-swagger2:2.7.0')
+	compile('io.springfox:springfox-bean-validators:2.7.0')
+	compile('io.springfox:springfox-swagger-ui:2.7.0')
+	compile('io.springfox:springfox-staticdocs:2.6.1')
+	compile('io.swagger:swagger-annotations:1.5.15')
+	compile('io.swagger:swagger-models:1.5.15')
+	compile('io.swagger:swagger-core:1.5.15')
+	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile("io.springfox:springfox-staticdocs")
+}
