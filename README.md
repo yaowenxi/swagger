@@ -1,10 +1,13 @@
 ## swagger + gradle 生成静态文档Demo
 
 进入目录，执行以下命令，在`src/main/resources/static/docs/`下生成index.html
+
+### windows
 ```groovy
 gradlew clean build
 ```
-或者
+
+### unix
 ```groovy
 ./gradle clean build
 ```
